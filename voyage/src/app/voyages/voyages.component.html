@@ -13,8 +13,8 @@
                         <td>{{voyage.nomVoyage}}</td>
                         <td>{{voyage.prixVoyage}}</td>
                         <td>{{voyage.dateVoyage | date:'dd/MM/yyyy'}}</td>
-                        <td><a class="btn btn-danger" (click)="supprimerVoyage(voyage)">Supprimer</a></td>
-                        <td><a class="btn btn-success" [routerLink]="['/updateVoyage', voyage.idVoyage]">Modifier</a></td>
+                        <td><a a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerVoyage(voyage)">Supprimer</a></td>
+                        <td><a a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateVoyage', voyage.idVoyage]">Modifier</a></td>
                     </tr>
                 </tbody>
             </table>

@@ -19,7 +19,8 @@ export class UpdateVoyageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentVoyage = this.voyageService.consulterVoyage(this.activatedRoute.snapshot.params['id']);
+    const voyageId = this.activatedRoute.snapshot.params['id'];
+    this.currentVoyage = this.voyageService.consulterVoyage(voyageId);
   }
 
   updateVoyage() {
