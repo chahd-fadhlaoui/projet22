@@ -6,6 +6,8 @@ import { VoyagesComponent } from './voyages/voyages.component';
 import { UpdateVoyageComponent } from './update-voyage/update-voyage.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { VoyageGuard } from './voyage.guard';
+import { RechercheParClasseComponent } from './recherche-par-classe/recherche-par-classe.component';
+import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 
 
 
@@ -15,6 +17,8 @@ const routes: Routes = [
   {path: "updateVoyage/:id", component: UpdateVoyageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'forbidden', component: ForbiddenComponent},
+  {path: "rechercheParClasse", component : RechercheParClasseComponent},
+  {path: "rechercheParNom", component : RechercheParNomComponent},
   {path: "", redirectTo: "voyages", pathMatch: "full" }
 ];
 

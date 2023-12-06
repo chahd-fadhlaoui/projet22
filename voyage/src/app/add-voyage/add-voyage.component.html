@@ -3,8 +3,8 @@
         <h2>Ajouter un Voyage :</h2>
     </div>
     <form>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-         <label>ID Voyage</label>
+        <div hidden class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Voyage</label>
             <input type="text" [(ngModel)]="newVoyage.idVoyage" name="idVoyage" class="form-control">
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
@@ -18,6 +18,14 @@
         <div class="col-sm-4 col-md-4 col-lg-4">
             <label>Date Voyage</label>
             <input type="date" [(ngModel)]="newVoyage.dateVoyage" name="Date Voyage" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Classe</label>
+            <select class="form-control form-control-lg" id="idCl" name="idCl" [(ngModel)]="newIdCl">
+                <option *ngFor="let cl of classes" [value]="cl.idCl">
+                    {{cl.nomCl}}
+                </option>
+            </select>
         </div>
         <div class="mt-2">
             <button type="submit" (click)="addVoyage()" class="btn btn-success">Ajouter</button>

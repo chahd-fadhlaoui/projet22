@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Voyage } from '../model/voyage.model';
 import { VoyageService } from '../services/voyage.service';
 import { Router } from '@angular/router';
+import { Classe } from '../model/Classe.model';
 
 @Component({
   selector: 'app-add-voyage',
@@ -10,20 +11,32 @@ import { Router } from '@angular/router';
 export class AddVoyageComponent implements OnInit {
 
   newVoyage: Voyage = new Voyage(); // Déclarer 'newVoyage' de type 'Voyage'
-  message : string;
-  constructor(private voyageService:VoyageService , private router: Router) {
+  classes!: Classe[];
+  newIdCl!: number;
+  newClasse!: Classe;
+
+  message: string;
+  constructor(private voyageService: VoyageService, private router: Router) {
     this.message = '';
   }
 
   ngOnInit(): void {
+    // this.classes=this.voyageService.listeClasses()
+    this.voyageService.listeClasses().
+      subscribe(cls => {this.classes = cls;
+        console.log(cls);
+      });
+
   }
 
   addVoyage() {
-    this.voyageService.ajouterVoyage(this.newVoyage);
-    this.message = 'Voyage ' + this.newVoyage.nomVoyage + ' ajouté avec succès';
-  
-    // Update the route to 'Voyages' (with the correct case)
-    this.router.navigate(['Voyages']);
+    this.newVoyage.classe = this.classes.find(cl => cl.idCl == this.newIdCl)!;
+    this.voyageService.ajouterVoyage(this.newVoyage).subscribe(voya => {
+        console.log(voya);
+        this.router.navigate(['Voyages']);
+      });
+
+
   }
-  
+
 }

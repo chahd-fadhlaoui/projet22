@@ -3,9 +3,8 @@
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Liste de Voyages</th>
-                    </tr>
+                    <tr> <th>Id</th><th>Nom</th> <th>Prix</th> <th>Date </th><th>Classe</th> </tr>
+
                 </thead>
                 <tbody *ngFor="let voyage of voyages">
                     <tr>
@@ -13,6 +12,8 @@
                         <td>{{voyage.nomVoyage}}</td>
                         <td>{{voyage.prixVoyage}}</td>
                         <td>{{voyage.dateVoyage | date:'dd/MM/yyyy'}}</td>
+                         <td>{{voyage.classe?.nomCl}}</td>
+
                         <td><a a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerVoyage(voyage)">Supprimer</a></td>
                         <td><a a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateVoyage', voyage.idVoyage]">Modifier</a></td>
                     </tr>

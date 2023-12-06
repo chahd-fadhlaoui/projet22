@@ -10,20 +10,35 @@ import { AuthService } from '../services/auth.service';
 })
 export class VoyagesComponent implements OnInit {
 
-  voyages?: Voyage[]; 
+  voyages!: Voyage[]; 
 
   constructor(private voyageService: VoyageService,
     private router: Router,
     public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.voyages = this.voyageService.listeVoyages(); 
-  }
+   this.chargerVoyages();
 
-  supprimerVoyage(v: Voyage) { 
-    let conf = confirm("Etes-vous sûr ?");
-    if (conf) {
-      this.voyageService.supprimerVoyage(v); 
-    }
   }
+  chargerVoyages(){
+  this.voyageService.listeVoyage().subscribe(voya => {
+    console.log(voya);
+    this.voyages = voya;
+  });
+}
+supprimerVoyage(v: Voyage) {
+  let conf = confirm("Etes-vous sûr ?");
+  if (conf) {
+    this.voyageService.supprimerVoyage(v.idVoyage!).subscribe(() => {
+      console.log("Voyage supprimé");
+      this.chargerVoyages(); 
+
+    });
+
+  }
+}
+
+
+
+
 }
